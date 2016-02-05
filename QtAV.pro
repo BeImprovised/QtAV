@@ -71,6 +71,14 @@ unix:!mac {
     !no-vaapi: OptionalDepends *= vaapi
   }
   !no-cedarv: OptionalDepends *= libcedarv
+
+
+}
+unix{
+  QMAKE_CFLAGS += -fPIC
+  QMAKE_CXXFLAGS += -fPIC
+  INCLUDEPATH +=  /usr/local/include
+  INCLUDEPATH +=  ../
 }
 mac|ios {
   !no-videotoolbox: OptionalDepends *= videotoolbox

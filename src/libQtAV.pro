@@ -19,6 +19,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 } else {
 config_gl: QT += opengl
 }
+CONFIG += c++11
 CONFIG *= qtav-buildlib
 staticlib: DEFINES += BUILD_QTAV_STATIC
 static: CONFIG *= static_ffmpeg
@@ -574,8 +575,16 @@ greaterThan(QT_MAJOR_VERSION, 4) {
   QMAKE_EXTRA_TARGETS *= qtav_dev_links
   target.depends *= $${qtav_dev_links.target}
 } #Qt>=5
-} #debian
 
+} #debian
+unix{
+  QMAKE_CFLAGS += -fPIC
+  QMAKE_CXXFLAGS += -fPIC
+  QMAKE_CFLAGS += -I/usr/local/include
+  QMAKE_CXXFLAGS += -I/usr/local/include
+  INCLUDEPATH +=  /usr/local/include
+  INCLUDEPATH +=  ../../
+}
 MODULE_INCNAME = QtAV
 MODULE_VERSION = $$VERSION
 #use Qt version. limited by qmake
